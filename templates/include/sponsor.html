@@ -1,0 +1,26 @@
+{% load static %}
+{% load sponsor_tags %}
+
+    <!-- CLIENT SECTION --> 
+    {% if sponsors %}
+	<div class="section stat-client p-sponsor bg-client">
+		<div class="page-title sponsor">
+				<h3 class="text-white">ПАРТНЕРЫ</h3>
+			</div>
+		<div class="container">
+			<div class="row">
+				{% get_sponsors as sponsors %}
+				{% for sponsor in sponsors %}
+				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+					<div class="client-img">
+						<a {% if sponsor.url != None %} target="_blank" href='{{ sponsor.url }}' {% else %} {% endif %}>
+							<img src="{{ sponsor.image.url }}" alt="логотип {{ sponsor.name }}" title="{{ sponsor.name }}" class="img-responsive" />
+						</a>
+					</div>
+				</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+	{% endif %}

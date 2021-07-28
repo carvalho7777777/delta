@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Контакты клуба {% endblock title %}
+
+{% block content %}	
+    
+    <!-- BANNER -->
+    <div class="section subbanner">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="caption">Контакты клуба</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SHOP SECTION -->
+	<div class="section singlepage" >
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="page-title">
+						<!-- <h2 class="lead">Контакты клуба</h2>
+						<div class="border-style"></div> -->
+						<div class="page-description">
+							<p><strong>Здесь вы можете найти контакты тренеров, адреса и расписание тренировок, а также задать вопрос или записаться на первую бесплатную тренировку. Возможно вы найдете ответ на свой вопрос в разделе <a href='{% url "app:faq" %}'>часто задаваемых вопросов</a>.</strong></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+			
+				<!-- <div class="col-sm-12 col-md-12">
+				
+					<div class="maps-wraper">
+						<div id="cd-zoom-in"></div>
+						<div id="cd-zoom-out"></div>
+						<div id="maps" class="maps" data-lat="-7.452278" data-lng="112.708992" >
+							
+						</div>
+					</div>
+					
+				</div> -->
+				
+				<div class="contact-content">
+				
+					<div class="col-sm-12 col-md-7">
+						<div class="form-question">
+							<p class="contact-title">Записаться на первое занятие или задать вопрос</p>
+							<p>Мы свяжемся с вами после того, как вы отправите нам сообщение.</p>
+							<br />
+                             
+                            <div id="success">
+								{% if messages %}
+									<div class="alert alert-success" role="alert">
+									    {% for message in messages %}
+									        {{ message }}
+									    {% endfor %}
+									    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    	<span aria-hidden="true">&times;</span>
+									    </button>
+									</div>
+							    {% endif %}
+							</div>
+
+							<form action="{% url 'app:contact' %}" class="form-contact shake form-horizontal" id="contactForm" method="post">
+								<div class="form-group">
+									<label for="name" class="col-sm-4 control-label">Ваше имя</label>
+									<div class="col-sm-8">
+										{{ form.name }}
+										<div class="help-block with-errors">
+											{{ form.name.errors }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="email" class="col-sm-4 control-label">Ваш email</label>
+									<div class="col-sm-8">
+										{{ form.email }}
+										<div class="help-block with-errors">
+											{{ form.email.errors }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="phone" class="col-sm-4 control-label">Номер телефона</label>
+									<div class="col-sm-8">
+										{{ form.phone }}
+										<div class="help-block with-errors">
+											{{ form.phone.errors }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="text" class="col-sm-4 control-label">Сообщение</label>
+									<div class="col-sm-8">
+										{{ form.text }}
+										<div class="help-block with-errors">
+											{{ form.text.errors }}
+										</div>
+									</div>
+								</div>
+								 {% csrf_token %}
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-sm-8">
+										<button type="submit" class="btn btn-default">Отправить</button>
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+					
+					{% if schedules %}
+					<div id="schedule" class="col-sm-12 col-md-5">
+						<div class="contact-address">
+							<p class="contact-title">Расписание тренировок</p>
+						    
+						    {% for schedule in schedules %}
+						    <hr style="border: 1px solid #f2cb10; background: #f2cb10;">
+							<div class="row margin">
+								<div class="col-sm-12 col-md-5">
+									<div class="contact-address-item">
+										<p class="contact-title">
+											{{ schedule.years }}
+										</p>
+										<p class="contact-address-heading">Адрес ({{ schedule.district }})</p>
+										<p>
+										{{ schedule.address }}
+										</p>
+										<br />
+										
+										<p class="contact-address-heading">Телефон</p>
+										<p>
+										{{ schedule.phone }}<br />
+										{{ schedule.post }} - {{ schedule.contact }}
+										</p>
+										<br />
+										<p class="contact-address-heading">Время занятий</p>
+										<p>
+										{{ schedule.schedule }}
+										</p>
+										<br />
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-7">
+									{% if schedule.image %}
+										<img src="{{ schedule.image.url }}" alt="картинка расписание" class="img-responsive" />
+									{% else %}
+									    <img src="{% static 'images/contact/default.png' %}" alt="картинка расписание" class="img-responsive" />
+									{% endif %}    
+								</div>
+							</div>
+	                        {% endfor %}
+							
+						</div>
+					</div>
+					{% endif %}
+					
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+
+	
+	{% include 'include/sponsor.html' %}
+	
+{% endblock %}	

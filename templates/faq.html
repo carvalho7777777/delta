@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Часто задаваемые вопросы {% endblock title %}
+
+
+{% block content %}
+ 
+	<!-- BANNER -->
+	<div class="section subbanner">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="caption">Часто задаваемые вопросы</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- ABOUT SECTION -->
+	<div class="section singlepage">
+		<div class="container">
+			
+			<div class="row pbot-main">
+				
+				<div class="col-sm-12 col-md-12">
+				
+					<div class="panel-group panel-faq" id="accordion" role="tablist" aria-multiselectable="true">
+                      {% for one in onefaq %}
+						  <div class="panel panel-default">
+							<div class="panel-heading active" role="tab" id="heading{{ faq.ordernumber }}">
+							  <h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ faq.ordernumber }}" aria-expanded="true" aria-controls="collapse{{ faq.ordernumber }}">
+								  {{ one.title }}
+								</a>
+							  </h4>
+							</div>
+							<div id="collapse{{ faq.ordernumber }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ faq.ordernumber }}">
+							  <div class="panel-body">
+								<p>{{ one.text }}</p>
+							  </div>
+							</div>
+						  </div>
+					  {% endfor %}
+
+
+					  {% for faq in faqs %}
+						  <div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="heading{{ faq.ordernumber }}">
+							  <h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ faq.ordernumber }}" aria-expanded="false" aria-controls="collapse{{ faq.ordernumber }}">
+								  {{ faq.title }}
+								</a>
+							  </h4>
+							</div>
+							<div id="collapse{{ faq.ordernumber }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ faq.ordernumber }}">
+							  <div class="panel-body">
+								<p>{{ faq.text }}</p>
+							  </div>
+							</div>
+						  </div>
+					  {% endfor %}
+					</div>
+				
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	
+{% endblock content %}

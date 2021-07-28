@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ 
+	<!-- BANNER -->
+	<div class="section subbanner">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="caption">TEAM</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- ABOUT SECTION -->
+	<div class="section singlepage">
+		<div class="container">
+			<div class="row">
+
+				<form action = "" method = "POST">
+				    {% csrf_token %}
+				    <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+				    <input type="hidden" name="post_id" value="{{ post.id }}"/>
+				    <button>Delete</button>
+				</form>
+			
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+
+	
+	
+{% endblock content %}

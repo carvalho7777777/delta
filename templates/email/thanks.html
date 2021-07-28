@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Форма успешно отправлена! {% endblock title %}
+
+{% block content %}	
+
+ <!-- BANNER -->
+    <div class="section subbanner">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="caption">Спасибо за вашу заявку</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- thanks SECTION -->
+	<div class="section singlepage" >
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="page-title">
+						<h2 class="lead">Форма успешно отпралена!</h2>
+						<div class="border-style"></div>
+						<div class="page-description">
+							<p><strong>Скоро с вами свяжемся по указанным контактам.</strong></p>
+						</div>
+                        <div class="loadmore">
+							<a class="btn btn-lg btn-primary" href="{% url 'app:contact' %}" role="button">вернуться назад</a>
+							<a class="btn btn-lg btn-primary" href="{% url 'app:main' %}" role="button">на главную</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			
+		</div>
+	</div> <!--end thanks SECTION -->
+
+
+	
+{% endblock %}	
